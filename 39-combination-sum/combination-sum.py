@@ -2,7 +2,6 @@ class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         res=[]
         curr=[]
-        candidates.sort()
         def back(i:int,total:int=0) ->None:
             if total==target:
                 res.append(curr.copy())
