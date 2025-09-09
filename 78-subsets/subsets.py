@@ -8,12 +8,13 @@ class Solution:
                 result.append(sol[:])
                 return
             # don't pick
+            sol.append(nums[index])
             backtrack(index+1)
 
             #don't pick
-            sol.append(nums[index])
-            backtrack(index+1)
             sol.pop()
+            backtrack(index+1)
+            
         # call the function 
         backtrack(0)
         return result
