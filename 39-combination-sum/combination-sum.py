@@ -3,6 +3,7 @@ class Solution:
         res=[]
         curr=[]
         total=0
+        candidates.sort()
 
         def backtrack(index,curr,total):
             # base cases:
