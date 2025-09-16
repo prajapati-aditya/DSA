@@ -1,6 +1,20 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
+        # best approach
+        one =0
+        two =0
+        for i in range(len(nums)):
+            val = max( nums[i]+one, two)
+            one = two
+            two = val
+        return max(one, two)
+
+
+
+'''    
         # dict to store value calculated to be used later
+
+
         memo={}
         def robber(nums,index):
             # we will use dp concept top down memoization
@@ -17,6 +31,7 @@ class Solution:
             memo[index]= max(rob_it, skip_it)
             return memo[index]
         return robber(nums, 0)
+'''
             
 
             
