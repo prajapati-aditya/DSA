@@ -1,5 +1,22 @@
 class Solution:
     def rearrangeArray(self, nums: List[int]) -> List[int]:
+        # optimal solution
+        n=len(nums)
+        ans=[0]*n # == [0,0,0,0,0,0]
+        pos = 0
+        neg = 1
+        for i in range(n):
+            if nums[i] > 0:
+                ans[pos] = nums[i]
+                pos+=2
+            else :
+                ans[neg] = nums[i]
+                neg+=2
+        return ans
+
+
+        # brute force approach
+'''                
         n = len(nums)//2
         pos= []
         neg = []
@@ -24,5 +41,6 @@ class Solution:
             i+=1
             r+=1
         return nums
+'''
 
         
