@@ -1,11 +1,9 @@
 class Solution:
     def rowAndMaximumOnes(self, mat: List[List[int]]) -> List[int]:
-        row = len(mat)
-        col = len(mat[0])
+    
         index = -1
         max_ones = -1
         for ind , row in enumerate(mat) :
-    
             ones_sum = sum(row)
             if ones_sum > max_ones :
                 index = ind 
