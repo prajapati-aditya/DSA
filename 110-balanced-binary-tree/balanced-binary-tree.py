@@ -7,14 +7,20 @@
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
 
-        def dfs(root) :
+        def find_height(root) :
             if not root :
-                return [True, 0]
-            left = dfs(root.left)
-            right = dfs(root.right) 
-            balance = ( left[0] and right[0]
-                        and abs(left[1] - right[1]) <= 1 )
-            return [ balance , 1+max(left[1] , right[1]) ]
-        return dfs(root)[0]
+                return 0
+            # find height of left
+            l_height = find_height(root.left)
+            if l_height == -1 : return -1
+            r_height = find_height(root.right)
+            if r_height == -1 : return -1
+
+            if abs(l_height - r_height ) > 1 : return -1
+
+            return 1+ max(l_height , r_height)
+
+        return find_height(root) != -1
+
  
         
