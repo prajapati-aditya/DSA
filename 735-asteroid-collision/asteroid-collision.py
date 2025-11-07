@@ -2,15 +2,14 @@ class Solution:
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
         stack = []
         for a in asteroids :
-            while len(stack)>0 and a < 0 and stack[-1] > 0 :
-                diff = a + stack[-1] 
-                if diff < 0 :
+            while stack and a < 0 < stack[-1] : # means both asteroid are in diffrent directio
+                if -a > stack[-1] :
                     stack.pop()
-                elif diff == 0 :
+                    continue
+                elif -a == stack[-1] :
                     stack.pop()
-                    a = 0
-                elif diff > 0 :
-                    a = 0
-            if a :
+                break
+            else :
                 stack.append(a)
+
         return stack
