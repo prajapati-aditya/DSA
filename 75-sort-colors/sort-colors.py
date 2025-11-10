@@ -14,12 +14,13 @@ class Solution:
                 low += 1
                 mid += 1
             
-            elif nums[mid] == 1 :
-                mid += 1 
-            
-            else :    # means other than 0 and 1 is 2
+            elif nums[mid] == 2 :
                 nums[mid] , nums[high] = nums[high] , nums[mid]
                 high -= 1
+                
+            
+            else :    
+                mid += 1 
         return nums
 
 
