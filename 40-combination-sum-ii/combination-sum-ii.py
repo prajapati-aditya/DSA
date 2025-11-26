@@ -1,22 +1,33 @@
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
-        res=[]
-        curr=[]
         candidates.sort()
-        def back(index,target):
-            if target==0 :
-                res.append(curr[:])
+        curr = []
+        res = []
+        n = len(candidates)
+        seen= set()
+
+        def solve(index,leftSum) :
+            # base case
+            if leftSum == 0 :
+                res.append(curr.copy())
                 return
-            
-            for i in range(index,len(candidates)):
+            # termination
+            if index >= n :
+                return
+            if candidates[index] > leftSum :
+                return
+
+            for i in range(index,n) :
                 if i>index and candidates[i]==candidates[i-1]:
                     continue
-                elif candidates[i]>target:
-                    break
-                curr.append(candidates[i])
-                back(i+1,target-candidates[i])
+
+                num = candidates[i]
+                curr.append(num)
+                seen.add(num)
+                # recuse
+                solve(i+1, leftSum-num)
+                # backtrack
                 curr.pop()
-            
-            
-        back(0,target)
+                
+        solve(0,target)
         return res
