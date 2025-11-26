@@ -1,42 +1,27 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        res=[]
-        curr=[]
-        def back(i:int,total:int=0) ->None:
-            if total==target:
+        curr = []
+        res = []
+        n = len(candidates)
+        candidates.sort()
+        
+        def solve(index, leftSum) :
+            # base case
+            if leftSum == 0 :
                 res.append(curr.copy())
                 return
+            # termination
+            if candidates[index] > leftSum :
+                return
+            
 
-            for j in range(i,len(candidates)):
-                new_total=total+candidates[j]
-                if total>target:
-                    break
-                curr.append(candidates[j])
-                back(j,new_total)
+            for i in range(index,n) :
+                num = candidates[i]
+                curr.append(num)
+                # recurse
+                solve(i,leftSum-num)
+                # backtrack
                 curr.pop()
-        back(0)
+        
+        solve(0,target)
         return res
-                
-
-
-        '''
-        def backtrack(index,curr,total):
-            # base cases:
-            if total==target:
-                res.append(curr.copy())
-                return
-            if index>= len(candidates) or total>target :
-                return
-            # pick 
-            curr.append(candidates[index])
-            backtrack(index,curr,total+candidates[index])
-
-            # before not pick remove the top element
-            curr.pop()
-            # not pick
-            backtrack(index+1,curr,total)
-
-        backtrack(0,[],0)
-        return res
-        taking 13ms
-        '''
