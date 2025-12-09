@@ -1,0 +1,20 @@
+class Solution:
+    def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
+        adj = [[] for _ in range(n)]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+
+        visited = [False] * n
+        
+        def dfs(u):
+            if u == destination:
+                return True
+            visited[u] = True
+            for v in adj[u]:
+                if not visited[v]:
+                    if dfs(v):
+                        return True
+            return False
+
+        return dfs(source)
